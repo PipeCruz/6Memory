@@ -7,6 +7,20 @@ import javafx.scene.input.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * - NO GRAPHICAL USER INTERFACE IS REQUIRED, YOU CAN USE JOPTION PANE
+ * - https://www.helpfulgames.com/subjects/brain-training/memory.html
+ * - 12 card minimum.
+ * - Player selects the first card and then selects the second. If the cards match they stay revealed or you can remove them.
+ * - The player must be shown the cards when they make a selection and the cards must be hidden if the player selects the wrong match.
+ * - The cards must show up in random order.
+ * - fixme If using JOptionPane you don't have to error proof, but you must explain to the user how to input for row and column.
+ * - You must have a way to exit the program (JOptionPane Example: type "exit" to exit)
+ *
+ * fixme CSS file
+ * fixme images
+ */
+
 public class MemoryGame {
 
     public ImageView zeroZero;
@@ -162,9 +176,11 @@ public class MemoryGame {
             oof();
         }
         nut.add((ImageView) m.getSource());
+        //fixme 12/8/19
         a.setDisable(false);
 
     }
+
     public void oof(){
         ImageView one = nut.get(0);
         ImageView two = nut.get(1);
