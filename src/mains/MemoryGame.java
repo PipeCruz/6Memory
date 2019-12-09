@@ -172,11 +172,11 @@ public class MemoryGame {
         }
 //        nut.add((ImageView) m.getSource());
 
-        if(nut.size()>=2){
+        if(nut.size()>1){
             oof();
         }
         nut.add((ImageView) m.getSource());
-        //fixme 12/8/19
+        //fixme 12/8/19 makin sure same img doesnt get selected twice
         a.setDisable(false);
 
     }
