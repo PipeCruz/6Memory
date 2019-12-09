@@ -177,6 +177,7 @@ public class MemoryGame {
         }
         nut.add((ImageView) m.getSource());
         //fixme 12/8/19 makin sure same img doesnt get selected twice
+        //fixme do this by making an arraylist of positions and if the same one is added twice dont let it!!!
         a.setDisable(false);
 
     }
