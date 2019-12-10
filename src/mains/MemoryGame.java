@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -45,7 +46,7 @@ public class MemoryGame {
 
     private static final double INV = 0.0000000001, VIS = 100;
 
-    private int cnt = 0;
+    private int correct = 0, wrong = 0;
 
     public MemoryGame() {
         images = new Pix().getImageViews();
@@ -87,10 +88,36 @@ public class MemoryGame {
         twoThree.setOpacity(INV);
         threeThree.setOpacity(INV);
     }
-    private ArrayList<ImageView> nut = new ArrayList<>();
-
+    private ArrayList<ImageView> futureCompare = new ArrayList<>();
+    private ArrayList<ImageView> check2 = new ArrayList<>();
 
     public void reveal(MouseEvent m) {
+        System.out.println("method starts future comparable size "  + futureCompare.size());
+        System.out.println("method start check2 size " + check2.size());
+
+        check2.add((ImageView) m.getSource());
+        if(check2.size()==2){
+            if(check2.get(0)==check2.get(1)){
+                System.out.println("they are the same so i will remove one now");
+                check2.remove(0);//todo
+//                check2.remove(0);
+                return;
+            }else{
+                check2.remove(0);
+                check2.remove(0);
+            }
+        }
+
+        if(futureCompare.size()>=2){
+            System.out.println("greater than two so i must wait until the thingies are removed");
+            return;
+        }
+
+        futureCompare.add((ImageView) m.getSource());
+        if(futureCompare.size()==2) {
+            oof();
+        }
+
         ImageView a = (ImageView) m.getSource();
         if(m.getSource()==zeroZero){
             System.out.println("0,0");
@@ -140,6 +167,7 @@ public class MemoryGame {
         if(m.getSource()==oneTwo){
             System.out.println("1,2");
             oneTwo.setOpacity(VIS);
+            oneTwo.setDisable(true);
         }
         if(m.getSource()==twoTwo){
             System.out.println("2,2");
@@ -170,41 +198,60 @@ public class MemoryGame {
             threeThree.setOpacity(VIS);
             threeThree.setDisable(true);
         }
-//        nut.add((ImageView) m.getSource());
-
-        if(nut.size()>1){
-            oof();
-        }
-        nut.add((ImageView) m.getSource());
         //fixme 12/8/19 makin sure same img doesnt get selected twice
         //fixme do this by making an arraylist of positions and if the same one is added twice dont let it!!!
         a.setDisable(false);
-
     }
 
-    public void oof(){
-        ImageView one = nut.get(0);
-        ImageView two = nut.get(1);
+    private Timer t,t2;
 
-        if(check(one.getImage(),two.getImage())){
-            System.out.println("true");
+    public void oof() {
+        ImageView one = futureCompare.get(0);
+        ImageView two = futureCompare.get(1);
+         t = new Timer(1000, e -> {
+            System.err.println("Check result : true ");
             one.setOpacity(VIS);
-            two.setOpacity(VIS);
             one.setDisable(true);
+            two.setOpacity(VIS);
             two.setDisable(true);
-            nut.remove(one);
-            nut.remove(two);
-            cnt++;
-            System.out.println(cnt);
-        }else{
+            futureCompare.remove(one);
+            correct++;
+            System.out.println("correct " + correct);
+             if(correct==8){
+                 finish();
+             }
+            futureCompare.remove(two);
+             if(!futureCompare.contains(two)){
+                 t.stop();
+                 System.err.println("correct timer ended");
+             }
+        });
+         t2 = new Timer(1000, e -> {
+            System.err.println("Check result : false");
             one.setOpacity(INV);
             two.setOpacity(INV);
-            nut.remove(one);
-            nut.remove(two);
+            futureCompare.remove(one);
+            futureCompare.remove(two);
+            wrong++;
+             System.out.println("wrong: " + wrong);
+             if(!futureCompare.contains(two)){
+                 t2.stop();
+                 System.err.println("false timer ended");
+             }
+        });
+        if(check(one.getImage(),two.getImage())){
+            t.start();
+        }else{
+            t2.start();
         }
+
     }
+    public void finish(){
+        System.err.println("done");
+    }
+
     public boolean check(Image i, Image j){
-        System.out.println("checking");
+        System.out.println("check method: " + i.equals(j));
         return i.equals(j);
     }
 }
