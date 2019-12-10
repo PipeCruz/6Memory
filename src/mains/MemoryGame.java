@@ -95,6 +95,11 @@ public class MemoryGame {
         System.out.println("method starts future comparable size "  + futureCompare.size());
         System.out.println("method start check2 size " + check2.size());
 
+        if(futureCompare.size()>=2){
+            System.out.println("greater than two so i must wait until the thingies are removed");
+            return;
+        }
+
         check2.add((ImageView) m.getSource());
         if(check2.size()==2){
             if(check2.get(0)==check2.get(1)){
@@ -108,10 +113,7 @@ public class MemoryGame {
             }
         }
 
-        if(futureCompare.size()>=2){
-            System.out.println("greater than two so i must wait until the thingies are removed");
-            return;
-        }
+
 
         futureCompare.add((ImageView) m.getSource());
         if(futureCompare.size()==2) {
