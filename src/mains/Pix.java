@@ -8,17 +8,42 @@ import java.util.Random;
 
 public class Pix {
     private Image one,one1,two,two1,three,three1,four,four1,five,five1,six,six1,seven,seven1,eight,eight1;
-
-    private ArrayList<Image> images;
+    boolean selection;
+    private ArrayList<Image> images, originals;
 
 
     public Pix(){
+        selection = true;
         setUpImages();
         setUpArrayList();
     }
 
+    public ArrayList<Image> getOriginals(){return originals;}
+
     public ArrayList<Image> getImageViews(){
         return images;
+    }
+
+    private void setUpImages() {
+        if(selection){
+            one = new Image("/pictures/pipe/r1c1.png");
+            one1 = one;
+            two = new Image("/pictures/pipe/r1c2.png");
+            two1=two;
+            three = new Image("/pictures/pipe/r1c3.png");
+            three1=three;
+            four = new Image("/pictures/pipe/r1c4.png");
+            four1=four;
+            five = new Image("/pictures/pipe/r2c1.png");
+            five1=five;
+            six = new Image("/pictures/pipe/r2c2.png");
+            six1=six;
+            seven = new Image("/pictures/pipe/r2c3.png");
+            seven1=seven;
+            eight = new Image("/pictures/pipe/r2c4.png");
+            eight1=eight;
+        }
+
     }
 
     private void setUpArrayList(){
@@ -39,25 +64,9 @@ public class Pix {
         images.add(seven1);
         images.add(eight);
         images.add(eight1);
-        Collections.shuffle(images,new Random());
-    }
 
-    private void setUpImages() {
-        one = new Image("/pictures/one.png");
-        one1 = one;
-        two = new Image("/pictures/two.png");
-        two1=two;
-        three = new Image("/pictures/three.png");
-        three1=three;
-        four = new Image("/pictures/four.png");
-        four1=four;
-        five = new Image("/pictures/five.png");
-        five1=five;
-        six = new Image("/pictures/six.png");
-        six1=six;
-        seven = new Image("/pictures/seven.png");
-        seven1=seven;
-        eight = new Image("/pictures/eight.png");
-        eight1=eight;
+        originals = (ArrayList<Image>) images.clone();
+
+        Collections.shuffle(images,new Random());
     }
 }

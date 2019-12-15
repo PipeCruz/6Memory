@@ -1,10 +1,16 @@
 package mains;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -41,19 +47,49 @@ public class MemoryGame {
     public ImageView twoThree;
     public ImageView threeThree;
 
+    public Label tLabel;
+
+
     private ArrayList<Image> images;
-//    private boolean uno,dos,tres,quatro,cinco,seis,siete,ocho;
+    //fixme
+    private static String time;
+
+
+    Timer timeline;
+    int secs = 0, mins = 0;
 
     private static final double INV = 0.0000000001, VIS = 100;
 
     private int correct = 0, wrong = 0;
 
-    public MemoryGame() {
-        images = new Pix().getImageViews();
+    private static Pix pix;
+
+    public static Pix getPix(){return pix;}
+
+    public MemoryGame()  {
+        timeline = new Timer(1000,e -> {
+            secs++;
+            if(secs==60){
+                secs=0;
+                mins++;
+            }
+//            tLabel.setText("hi");
+            System.out.println("secs " + secs);
+            System.out.println("mins " + mins);
+
+        });
+        timeline.start();
+        pix = new Pix();
+        images = pix.getImageViews();
         Collections.shuffle(images);
+
     }
 
-    public void initialize(){
+    public static String getTime() {
+        return time;
+    }
+
+    public void initialize() throws IOException {
         zeroZero.setImage(images.get(0));
         oneZero.setImage(images.get(1));
         twoZero.setImage(images.get(2));
@@ -87,6 +123,8 @@ public class MemoryGame {
         oneThree.setOpacity(INV);
         twoThree.setOpacity(INV);
         threeThree.setOpacity(INV);
+
+//        finish();
     }
     private ArrayList<ImageView> futureCompare = new ArrayList<>();
     private ArrayList<ImageView> check2 = new ArrayList<>();
@@ -219,13 +257,19 @@ public class MemoryGame {
             futureCompare.remove(one);
             correct++;
             System.out.println("correct " + correct);
-             if(correct==8){
-                 finish();
-             }
+
             futureCompare.remove(two);
              if(!futureCompare.contains(two)){
                  t.stop();
                  System.err.println("correct timer ended");
+             }
+             if(correct==8){
+                 try {
+                     timeline.stop();
+                     finish();
+                 } catch (IOException ex) {
+                     ex.printStackTrace();
+                 }
              }
         });
          t2 = new Timer(1000, e -> {
@@ -248,12 +292,38 @@ public class MemoryGame {
         }
 
     }
-    public void finish(){
+    public void finish() throws IOException {
         System.err.println("done");
+//        zeroZero.getScene().setRoot(FXMLLoader.load(getClass().getResource("/files/Picture.fxml")));
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource(
+                        "/files/Picture.fxml"
+                )
+        );
+
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene( new Scene(loader.load()));
+
+        Picture controller =
+                loader.getController();
+        controller.initData(time);//fixme in passing time
+
+        stage.show();
     }
+
 
     public boolean check(Image i, Image j){
         System.out.println("check method: " + i.equals(j));
         return i.equals(j);
     }
+
+//    public ImageView zeroZero1;
+//    public ImageView oneZero1;
+//    public ImageView twoZero1;
+//    public ImageView threeZero1;
+//    public ImageView zeroOne1;
+//    public ImageView oneOne1;
+//    public ImageView twoOne1;
+//    public ImageView threeOne1;
+
 }
