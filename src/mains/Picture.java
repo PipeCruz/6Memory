@@ -2,9 +2,10 @@ package mains;
 
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class Picture {
+
     public ImageView zeroZero1;
     public ImageView oneZero1;
     public ImageView twoZero1;
@@ -13,11 +14,9 @@ public class Picture {
     public ImageView oneOne1;
     public ImageView twoOne1;
     public ImageView threeOne1;
-
-    public Label timeTaken;
+    public Label timeTaken;//fixme use total attempts
 
     public void initData(String totalTime){
-        System.out.println("time taken " + timeTaken);
         timeTaken.setText(totalTime);
     }
 
@@ -33,10 +32,13 @@ public class Picture {
         oneOne1.setImage(MemoryGame.getPix().getOriginals().get(10));
         twoOne1.setImage(MemoryGame.getPix().getOriginals().get(12));
         threeOne1.setImage(MemoryGame.getPix().getOriginals().get(14));
+        timeTaken.setText(MemoryGame.getTime());
 
     }
 
 
-    public void playAgain(MouseEvent mouseEvent) {
+    public void playAgain() throws Exception {
+        System.out.println("play again");
+        new Main().start((Stage)timeTaken.getScene().getWindow());
     }
 }

@@ -2,12 +2,13 @@ package mains;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -46,8 +47,8 @@ public class MemoryGame {
     public ImageView oneThree;
     public ImageView twoThree;
     public ImageView threeThree;
-
-    public Label tLabel;
+    public Text tLabel;
+    public Button finishButt = new Button();
 
 
     private ArrayList<Image> images;
@@ -58,7 +59,7 @@ public class MemoryGame {
     Timer timeline;
     int secs = 0, mins = 0;
 
-    private static final double INV = 0.0000000001, VIS = 100;
+    private static final double INV = .00000000001, VIS = 100;
 
     private int correct = 0, wrong = 0;
 
@@ -68,15 +69,17 @@ public class MemoryGame {
 
     public MemoryGame()  {
         timeline = new Timer(1000,e -> {
+            if(correct==8){
+                timeline.stop();
+                finishButt.setDisable(false);
+                finishButt.setVisible(true);
+            }
             secs++;
             if(secs==60){
                 secs=0;
                 mins++;
             }
-//            tLabel.setText("hi");
-            System.out.println("secs " + secs);
-            System.out.println("mins " + mins);
-
+            tLabel.setText(String.format("%d:%02d", mins, secs));
         });
         timeline.start();
         pix = new Pix();
@@ -89,7 +92,7 @@ public class MemoryGame {
         return time;
     }
 
-    public void initialize() throws IOException {
+    public void initialize() {
         zeroZero.setImage(images.get(0));
         oneZero.setImage(images.get(1));
         twoZero.setImage(images.get(2));
@@ -123,8 +126,8 @@ public class MemoryGame {
         oneThree.setOpacity(INV);
         twoThree.setOpacity(INV);
         threeThree.setOpacity(INV);
-
-//        finish();
+//        finishButt.setDisable(false);//fixme
+        finishButt.setVisible(false);
     }
     private ArrayList<ImageView> futureCompare = new ArrayList<>();
     private ArrayList<ImageView> check2 = new ArrayList<>();
@@ -150,8 +153,6 @@ public class MemoryGame {
                 check2.remove(0);
             }
         }
-
-
 
         futureCompare.add((ImageView) m.getSource());
         if(futureCompare.size()==2) {
@@ -241,6 +242,8 @@ public class MemoryGame {
         //fixme 12/8/19 makin sure same img doesnt get selected twice
         //fixme do this by making an arraylist of positions and if the same one is added twice dont let it!!!
         a.setDisable(false);
+
+
     }
 
     private Timer t,t2;
@@ -263,14 +266,7 @@ public class MemoryGame {
                  t.stop();
                  System.err.println("correct timer ended");
              }
-             if(correct==8){
-                 try {
-                     timeline.stop();
-                     finish();
-                 } catch (IOException ex) {
-                     ex.printStackTrace();
-                 }
-             }
+
         });
          t2 = new Timer(1000, e -> {
             System.err.println("Check result : false");
@@ -285,30 +281,26 @@ public class MemoryGame {
                  System.err.println("false timer ended");
              }
         });
+
         if(check(one.getImage(),two.getImage())){
             t.start();
         }else{
             t2.start();
         }
-
     }
+
     public void finish() throws IOException {
+        timeline.stop();
         System.err.println("done");
-//        zeroZero.getScene().setRoot(FXMLLoader.load(getClass().getResource("/files/Picture.fxml")));
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource(
-                        "/files/Picture.fxml"
-                )
-        );
+        Scene scene = zeroZero.getScene();
+        Window window = scene.getWindow();
+        Stage stage = (Stage)window;
+        stage.centerOnScreen();
+        stage.setTitle("Congratulations!");
+        time = tLabel.getText();
 
-        Stage stage = new Stage(StageStyle.DECORATED);
-        stage.setScene( new Scene(loader.load()));
+        scene.setRoot(FXMLLoader.load(getClass().getResource("/files/Picture.fxml")));
 
-        Picture controller =
-                loader.getController();
-        controller.initData(time);//fixme in passing time
-
-        stage.show();
     }
 
 
@@ -316,6 +308,7 @@ public class MemoryGame {
         System.out.println("check method: " + i.equals(j));
         return i.equals(j);
     }
+
 
 //    public ImageView zeroZero1;
 //    public ImageView oneZero1;

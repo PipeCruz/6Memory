@@ -8,12 +8,23 @@ import java.util.Random;
 
 public class Pix {
     private Image one,one1,two,two1,three,three1,four,four1,five,five1,six,six1,seven,seven1,eight,eight1;
-    boolean selection;
+    int selection;
     private ArrayList<Image> images, originals;
+    private String folder;
 
 
     public Pix(){
-        selection = true;
+        selection = (int)(Math.random()*4);
+        if(selection==0){
+            folder="pipe";
+        }else if(selection==1){
+            folder="atlas";
+        }else if(selection==2){
+            folder = "bailly";
+        }else if(selection==3){
+            folder = "";
+        }
+        System.out.println(selection + "selection");
         setUpImages();
         setUpArrayList();
     }
@@ -25,25 +36,22 @@ public class Pix {
     }
 
     private void setUpImages() {
-        if(selection){
-            one = new Image("/pictures/pipe/r1c1.png");
+            one = new   Image("/pictures/" + folder + "/r1c1.png");
             one1 = one;
-            two = new Image("/pictures/pipe/r1c2.png");
+            two = new   Image("/pictures/" + folder + "/r1c2.png");
             two1=two;
-            three = new Image("/pictures/pipe/r1c3.png");
+            three = new Image("/pictures/" + folder + "/r1c3.png");
             three1=three;
-            four = new Image("/pictures/pipe/r1c4.png");
+            four = new  Image("/pictures/" + folder + "/r1c4.png");
             four1=four;
-            five = new Image("/pictures/pipe/r2c1.png");
+            five = new  Image("/pictures/" + folder + "/r2c1.png");
             five1=five;
-            six = new Image("/pictures/pipe/r2c2.png");
+            six = new   Image("/pictures/" + folder + "/r2c2.png");
             six1=six;
-            seven = new Image("/pictures/pipe/r2c3.png");
+            seven = new Image("/pictures/" + folder + "/r2c3.png");
             seven1=seven;
-            eight = new Image("/pictures/pipe/r2c4.png");
+            eight = new Image("/pictures/" + folder + "/r2c4.png");
             eight1=eight;
-        }
-
     }
 
     private void setUpArrayList(){
