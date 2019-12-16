@@ -50,7 +50,6 @@ public class MemoryGame {
     public Text tLabel;
     public Button finishButt = new Button();
 
-
     private ArrayList<Image> images;
     //fixme
     private static String time;
@@ -59,24 +58,22 @@ public class MemoryGame {
     Timer timeline;
     int secs = 0, mins = 0;
 
-    private static final double INV = .00000000001, VIS = 100;
-
-    private int correct = 0, wrong = 0;
+    private static final double INV = .00000000000001, VIS = 100;
+    private static int wrong = 0;
+    private int correct = 0;
 
     private static Pix pix;
 
-    public static Pix getPix(){return pix;}
-
-    public MemoryGame()  {
-        timeline = new Timer(1000,e -> {
-            if(correct==8){
+    public MemoryGame() {
+        timeline = new Timer(1000, e -> {
+            if (correct == 8) {
                 timeline.stop();
                 finishButt.setDisable(false);
                 finishButt.setVisible(true);
             }
             secs++;
-            if(secs==60){
-                secs=0;
+            if (secs == 60) {
+                secs = 0;
                 mins++;
             }
             tLabel.setText(String.format("%d:%02d", mins, secs));
@@ -85,7 +82,14 @@ public class MemoryGame {
         pix = new Pix();
         images = pix.getImageViews();
         Collections.shuffle(images);
+    }
 
+    public static Pix getPix() {
+        return pix;
+    }
+
+    public static int getWrong() {
+        return wrong;
     }
 
     public static String getTime() {
@@ -133,22 +137,22 @@ public class MemoryGame {
     private ArrayList<ImageView> check2 = new ArrayList<>();
 
     public void reveal(MouseEvent m) {
-        System.out.println("method starts future comparable size "  + futureCompare.size());
-        System.out.println("method start check2 size " + check2.size());
+//        System.out.println("method starts future comparable size "  + futureCompare.size());
+//        System.out.println("method start check2 size " + check2.size());
 
-        if(futureCompare.size()>=2){
-            System.out.println("greater than two so i must wait until the thingies are removed");
+        if (futureCompare.size() >= 2) {
+//            System.out.println("greater than two so i must wait until the thingies are removed");
             return;
         }
 
         check2.add((ImageView) m.getSource());
-        if(check2.size()==2){
-            if(check2.get(0)==check2.get(1)){
-                System.out.println("they are the same so i will remove one now");
+        if (check2.size() == 2) {
+            if (check2.get(0) == check2.get(1)) {
+//                System.out.println("they are the same so i will remove one now");
                 check2.remove(0);//todo
 //                check2.remove(0);
                 return;
-            }else{
+            } else {
                 check2.remove(0);
                 check2.remove(0);
             }
@@ -161,81 +165,81 @@ public class MemoryGame {
 
         ImageView a = (ImageView) m.getSource();
         if(m.getSource()==zeroZero){
-            System.out.println("0,0");
+//            System.out.println("0,0");
             zeroZero.setOpacity(VIS);
             zeroZero.setDisable(true);
         }
         if(m.getSource()==oneZero){
-            System.out.println("1,0");
+//            System.out.println("1,0");
             oneZero.setOpacity(VIS);
             oneZero.setDisable(true);
         }
         if(m.getSource()==twoZero){
-            System.out.println("2,0");
+//            System.out.println("2,0");
             twoZero.setOpacity(VIS);
             twoZero.setDisable(true);
         }
         if(m.getSource()==threeZero){
-            System.out.println("3,0");
+//            System.out.println("3,0");
             threeZero.setOpacity(VIS);
             threeZero.setDisable(true);
         }
         if(m.getSource()==zeroOne){
-            System.out.println("0,1");
+//            System.out.println("0,1");
             zeroOne.setOpacity(VIS);
             zeroOne.setDisable(true);
         }
         if(m.getSource()==oneOne){
-            System.out.println("1,1");
+//            System.out.println("1,1");
             oneOne.setOpacity(VIS);
             oneOne.setDisable(true);
         }
         if(m.getSource()==twoOne){
-            System.out.println("2,1");
+//            System.out.println("2,1");
             twoOne.setOpacity(VIS);
             twoOne.setDisable(true);
         }
         if(m.getSource()==threeOne){
-            System.out.println("3,1");
+//            System.out.println("3,1");
             threeOne.setOpacity(VIS);
             threeOne.setDisable(true);
         }
         if(m.getSource()==zeroTwo){
-            System.out.println("0,2");
+//            System.out.println("0,2");
             zeroTwo.setOpacity(VIS);
             zeroTwo.setDisable(true);
         }
         if(m.getSource()==oneTwo){
-            System.out.println("1,2");
+//            System.out.println("1,2");
             oneTwo.setOpacity(VIS);
             oneTwo.setDisable(true);
         }
         if(m.getSource()==twoTwo){
-            System.out.println("2,2");
+//            System.out.println("2,2");
             twoTwo.setOpacity(VIS);
             twoTwo.setDisable(true);
         }
         if(m.getSource()==threeTwo){
-            System.out.println("3,2");
+//            System.out.println("3,2");
             threeTwo.setOpacity(VIS);
             threeTwo.setDisable(true);
         }
         if(m.getSource()==zeroThree){
-            System.out.println("0,3");
+//            System.out.println("0,3");
             zeroThree.setOpacity(VIS);
             zeroThree.setDisable(true);
         }
         if(m.getSource()==oneThree){
-            System.out.println("1,3");
+//            System.out.println("1,3");
             oneThree.setOpacity(VIS);
             oneThree.setDisable(true);
         }
         if(m.getSource()==twoThree){
-            System.out.println("2,3");
+//            System.out.println("2,3");
             twoThree.setOpacity(VIS);
             twoThree.setDisable(true);
         }if(m.getSource()==threeThree){
-            System.out.println("3,3");
+//            System.out.println("3,3");
             threeThree.setOpacity(VIS);
             threeThree.setDisable(true);
         }
@@ -252,33 +256,33 @@ public class MemoryGame {
         ImageView one = futureCompare.get(0);
         ImageView two = futureCompare.get(1);
          t = new Timer(1000, e -> {
-            System.err.println("Check result : true ");
+//            System.err.println("Check result : true ");
             one.setOpacity(VIS);
             one.setDisable(true);
             two.setOpacity(VIS);
             two.setDisable(true);
             futureCompare.remove(one);
             correct++;
-            System.out.println("correct " + correct);
+//            System.out.println("correct " + correct);
 
             futureCompare.remove(two);
              if(!futureCompare.contains(two)){
                  t.stop();
-                 System.err.println("correct timer ended");
+//                 System.err.println("correct timer ended");
              }
 
         });
          t2 = new Timer(1000, e -> {
-            System.err.println("Check result : false");
+//            System.err.println("Check result : false");
             one.setOpacity(INV);
             two.setOpacity(INV);
             futureCompare.remove(one);
             futureCompare.remove(two);
             wrong++;
-             System.out.println("wrong: " + wrong);
+//             System.out.println("wrong: " + wrong);
              if(!futureCompare.contains(two)){
                  t2.stop();
-                 System.err.println("false timer ended");
+//                 System.err.println("false timer ended");
              }
         });
 
@@ -291,7 +295,7 @@ public class MemoryGame {
 
     public void finish() throws IOException {
         timeline.stop();
-        System.err.println("done");
+//        System.err.println("done");
         Scene scene = zeroZero.getScene();
         Window window = scene.getWindow();
         Stage stage = (Stage)window;
@@ -305,7 +309,7 @@ public class MemoryGame {
 
 
     public boolean check(Image i, Image j){
-        System.out.println("check method: " + i.equals(j));
+//        System.out.println("check method: " + i.equals(j));
         return i.equals(j);
     }
 

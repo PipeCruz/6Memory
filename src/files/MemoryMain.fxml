@@ -26,24 +26,43 @@
         <ImageView fx:id="zeroOne" fitHeight="125.0" fitWidth="125.0" layoutX="410.0" layoutY="10.0" onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
         <ImageView fx:id="oneOne" fitHeight="125.0" fitWidth="125.0" layoutX="10.0" layoutY="110.0" onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <ImageView fx:id="twoOne" fitHeight="125.0" fitWidth="125.0" layoutX="110.0" layoutY="110.0" onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-        <ImageView fx:id="threeOne" fitHeight="125.0" fitWidth="125.0" layoutX="210.0" layoutY="110.0" onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-        <ImageView fx:id="zeroTwo" fitHeight="125.0" fitWidth="125.0" layoutX="410.0" layoutY="110.0" onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
-        <ImageView fx:id="oneTwo" fitHeight="125.0" fitWidth="125.0" layoutX="10.0" layoutY="210.0" onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <ImageView fx:id="twoTwo" fitHeight="125.0" fitWidth="125.0" layoutX="110.0" layoutY="210.0" onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-        <ImageView fx:id="threeTwo" fitHeight="125.0" fitWidth="125.0" layoutX="210.0" layoutY="210.0" onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-        <ImageView fx:id="zeroThree" fitHeight="125.0" fitWidth="125.0" layoutX="410.0" layoutY="210.0" onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3" />
-        <ImageView fx:id="oneThree" fitHeight="125.0" fitWidth="125.0" layoutX="10.0" layoutY="310.0" onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-        <ImageView fx:id="twoThree" fitHeight="125.0" fitWidth="125.0" layoutX="110.0" layoutY="310.0" onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-        <ImageView fx:id="threeThree" fitHeight="125.0" fitWidth="125.0" layoutX="210.0" layoutY="310.0" onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+        <ImageView fx:id="threeOne" fitHeight="125.0" fitWidth="125.0" layoutX="210.0" layoutY="110.0"
+                   onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3"
+                   GridPane.rowIndex="1"/>
+        <ImageView fx:id="zeroTwo" fitHeight="125.0" fitWidth="125.0" layoutX="410.0" layoutY="110.0"
+                   onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2"/>
+        <ImageView fx:id="oneTwo" fitHeight="125.0" fitWidth="125.0" layoutX="10.0" layoutY="210.0"
+                   onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1"
+                   GridPane.rowIndex="2"/>
+        <ImageView fx:id="twoTwo" fitHeight="125.0" fitWidth="125.0" layoutX="110.0" layoutY="210.0"
+                   onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2"
+                   GridPane.rowIndex="2"/>
+        <ImageView fx:id="threeTwo" fitHeight="125.0" fitWidth="125.0" layoutX="210.0" layoutY="210.0"
+                   onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3"
+                   GridPane.rowIndex="2"/>
+        <ImageView fx:id="zeroThree" fitHeight="125.0" fitWidth="125.0" layoutX="410.0" layoutY="210.0"
+                   onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3"/>
+        <ImageView fx:id="oneThree" fitHeight="125.0" fitWidth="125.0" layoutX="10.0" layoutY="310.0"
+                   onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1"
+                   GridPane.rowIndex="3"/>
+        <ImageView fx:id="twoThree" fitHeight="125.0" fitWidth="125.0" layoutX="110.0" layoutY="310.0"
+                   onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2"
+                   GridPane.rowIndex="3"/>
+        <ImageView fx:id="threeThree" fitHeight="125.0" fitWidth="125.0" layoutX="210.0" layoutY="310.0"
+                   onMouseClicked="#reveal" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3"
+                   GridPane.rowIndex="3"/>
     </GridPane>
-   <Text fx:id="tLabel" layoutX="506.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="65.99999380111694">
-      <font>
-         <Font name="Times New Roman Bold" size="18.0" />
-      </font></Text>
-   <Button fx:id="finishButt" disable="true" layoutX="506.0" layoutY="315.0" mnemonicParsing="false" onMouseClicked="#finish" text="FINISH" textAlignment="CENTER">
-      <font>
-         <Font name="Times New Roman" size="14.0" />
-      </font>
-   </Button>
+    <Text fx:id="tLabel" layoutX="506.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" "
+          textAlignment="CENTER" wrappingWidth="65.99999380111694">
+        <font>
+            <Font name="Times New Roman Bold" size="18.0"/>
+        </font>
+    </Text>
+    <Button fx:id="finishButt" disable="true" layoutX="506.0" layoutY="315.0" mnemonicParsing="false"
+            onMouseClicked="#finish" text="DONE" textAlignment="CENTER">
+        <font>
+            <Font name="Times New Roman" size="14.0"/>
+        </font>
+    </Button>
 
 </AnchorPane>
